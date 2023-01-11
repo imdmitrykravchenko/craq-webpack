@@ -1,0 +1,79 @@
+{
+  "root": true,
+  "extends": ["airbnb", "prettier"],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "plugins": ["react", "import", "prettier", "@typescript-eslint"],
+  "globals": {
+    "__INITIAL_STATE__": "readonly",
+    "__SERVER_STATS__": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true,
+        "args": "after-used"
+      }
+    ],
+    "prettier/prettier": "error",
+    "arrow-parens": ["error", "always"],
+    "arrow-body-style": ["error", "as-needed"],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let"], "next": "*" },
+      { "blankLine": "any", "prev": ["const", "let"], "next": ["const", "let"] }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          ["index", "sibling"]
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
+    "react/jsx-wrap-multilines": "off",
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "controlComponents": ["Checkbox", "FormControl"]
+      }
+    ],
+    "react/jsx-handler-names": ["error"],
+    "jsx-a11y/label-has-for": [
+      2,
+      {
+        "components": ["Label"],
+        "required": {
+          "some": ["id", "nesting"]
+        },
+        "allowChildren": false
+      }
+    ],
+    "indent": "off",
+    "react/jsx-indent": "off",
+    "implicit-arrow-linebreak": [0],
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-filename-extension": "off",
+    "react/destructuring-assignment": "off",
+    "react/prop-types": [1]
+  },
+  "settings": {}
+}
