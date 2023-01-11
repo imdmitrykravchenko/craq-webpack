@@ -68,35 +68,34 @@ const webpackBuildServerMiddleware: (params: {
   ).then(() => getStats(statsFile));
 
   return () =>
-    async ({ to, context }, next) => {
-      const assetsByChunkName = await loading;
-
-      commonChunks
-        .reduce(
-          getStaticReducer(assetsByChunkName, isCss, to.config.bundle),
-          new Set<string>(),
-        )
-        .forEach((href) => {
-          context.head.addLink({
-            href: addAssetsPath(assetsPath, href),
-            rel: 'stylesheet',
+    ({ to, context }, next) =>
+      loading.then((assetsByChunkName) => {
+        commonChunks
+          .reduce(
+            getStaticReducer(assetsByChunkName, isCss, to.config.bundle),
+            new Set<string>(),
+          )
+          .forEach((href) => {
+            context.head.addLink({
+              href: addAssetsPath(assetsPath, href),
+              rel: 'stylesheet',
+            });
           });
-        });
 
-      commonChunks
-        .reduce(
-          getStaticReducer(assetsByChunkName, isJs, to.config.bundle),
-          new Set<string>(),
-        )
-        .forEach((src) => {
-          context.head.addScript({
-            src: addAssetsPath(assetsPath, src),
-            attributes: { defer: true },
+        commonChunks
+          .reduce(
+            getStaticReducer(assetsByChunkName, isJs, to.config.bundle),
+            new Set<string>(),
+          )
+          .forEach((src) => {
+            context.head.addScript({
+              src: addAssetsPath(assetsPath, src),
+              attributes: { defer: true },
+            });
           });
-        });
 
-      next();
-    };
+        return next();
+      });
 };
 
 export default webpackBuildServerMiddleware;
