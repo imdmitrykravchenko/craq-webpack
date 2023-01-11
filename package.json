@@ -1,7 +1,10 @@
 {
   "name": "craq-webpack",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,8 +12,8 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
-    "craq-server": "^0.4.1",
-    "router6": "^0.0.6"
+    "craq-server": "^0.5.1",
+    "router6": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",

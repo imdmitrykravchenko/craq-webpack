@@ -52,7 +52,7 @@ const getStats = (statsFile: {
 const webpackBuildServerMiddleware: (params: {
   bundles: Record<string, () => Promise<any>>;
   assetsPath: string;
-  commonChunks?: [];
+  commonChunks?: string[];
   statsFile: {
     path?: string;
     content?: Chunks;
